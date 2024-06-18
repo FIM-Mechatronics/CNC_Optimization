@@ -1,0 +1,50 @@
+import matplotlib.pyplot as plt
+
+# The first table
+projects_1 = {
+    "P1-60x30": 27*60 + 44,
+    "P2-1230x550": 39*60 + 57,
+    "P3-1200x550": 46*60 + 32,
+    "P4-1200x500": 39*60 + 41
+}
+
+# The second table
+projects_2 = {
+    "P1-60x30": 26*60 + 46,
+    "P2-1200x550": 38*60 + 58,
+    "P3-1200x550": 45*60 + 33,
+    "P4-1200x500": 38*60 + 42
+}
+
+# Calculation of total time for each table
+total_time_1 = sum(projects_1.values())
+total_time_2 = sum(projects_2.values())
+
+# Graphic representation of the total time for each project in two tables
+fig, ax = plt.subplots()
+
+projects = list(projects_1.keys())
+times_1 = list(projects_1.values())
+times_2 = list(projects_2.values())
+
+bar_width = 0.35
+index = range(len(projects))
+
+bar1 = ax.bar(index, times_1, bar_width, label='Table 1')
+bar2 = ax.bar([i + bar_width for i in index], times_2, bar_width, label='Table 2')
+
+ax.set_xlabel('Projects')
+ax.set_ylabel('Time (minutes)')
+ax.set_title('Working time for each project in two tables')
+ax.set_xticks([i + bar_width / 2 for i in index])
+ax.set_xticklabels(projects)
+ax.legend()
+
+plt.xticks(rotation=45, ha='right')
+plt.tight_layout()
+plt.show()
+
+# Finding the time difference between tables
+difference = total_time_1 - total_time_2
+print(f"The time difference between the tables is {abs(difference)} minutes.{' growth' if difference < 0 else ' decrease'} in time.")
+import matplotlib.pyplot as plt

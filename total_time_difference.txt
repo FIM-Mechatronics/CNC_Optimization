@@ -1,0 +1,39 @@
+import matplotlib.pyplot as plt
+
+# Define the data for Table 1
+table1 = {
+    'P1': '60x30 27:44',
+    'P2': '1230x550 39:57',
+    'P3': '1200x550 46:32',
+    'P4': '1200x500 39:41'
+}
+
+# Define the data for Table 2
+table2 = {
+    'P1': '60x30 26:46',
+    'P2': '1200x550 38:58',
+    'P3': '1200x550 45:33',
+    'P4': '1200x500 38:42'
+}
+
+# Function to convert time string to minutes
+def time_to_minutes(time_str):
+    parts = time_str.split(':')
+    return int(parts[0]) * 60 + int(parts[1])
+
+# Calculate total time for Table 1
+total_time_table1 = sum(time_to_minutes(time_str.split()[1]) for time_str in table1.values())
+
+# Calculate total time for Table 2
+total_time_table2 = sum(time_to_minutes(time_str.split()[1]) for time_str in table2.values())
+
+# Plotting
+tables = ['Table 1', 'Table 2']
+total_times = [total_time_table1, total_time_table2]
+
+plt.figure(figsize=(8, 5))
+plt.bar(tables, total_times, color=['blue', 'green'])
+plt.xlabel('Tables')
+plt.ylabel('Total Time (minutes)')
+plt.title('Total Time Comparison between Tables')
+plt.show()

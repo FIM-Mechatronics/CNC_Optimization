@@ -1,0 +1,45 @@
+# Travel times for each table before adjustment
+travel_times_before = {
+    22: "04:02",
+    211: "03:36",
+    212: "03:35",
+    213: "03:36",
+    214: "03:37"
+}
+
+# Travel times for each table after adjustment
+travel_times_after = {
+    22: "03:53",
+    211: "03:33",
+    212: "03:33",
+    213: "03:34",
+    214: "03:33"
+}
+
+# Function to convert time from "mm:ss" format to total minutes
+def convert_to_minutes(time_str):
+    minutes, seconds = map(int, time_str.split(':'))
+    return minutes + seconds / 60
+
+# Calculate total time for each table before adjustment
+total_time_before = [convert_to_minutes(time) for time in travel_times_before.values()]
+
+# Calculate total time for each table after adjustment
+total_time_after = [convert_to_minutes(time) for time in travel_times_after.values()]
+
+# X labels for the tables
+table_labels = [str(table) for table in travel_times_before.keys()]
+
+# Load data into the plot
+plt.bar(table_labels, total_time_before, color='b', alpha=0.5, label='Before adjustment')
+plt.bar(table_labels, total_time_after, color='r', alpha=0.5, label='After adjustment')
+
+# Add labels and title
+plt.xlabel('Table')
+plt.ylabel('Total Time (minutes)')
+plt.title('Comparison of Travel Time Before and After Adjustment')
+plt.legend()
+
+# Show the plot
+plt.show()
+
